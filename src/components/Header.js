@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Header = ({ cartItemCount }) => {
   return (
@@ -9,10 +10,10 @@ export const Header = ({ cartItemCount }) => {
         </a>
       </div>
       <div>
-        <a href="#/cart" style={{ fontWeight: "bold" }}>
+        <Link to="/cart" style={{ fontWeight: "bold" }}>
           Cart <span>({cartItemCount})</span>
-        </a>{" "}
-        <a href="#/signin">Sign In</a>
+        </Link>{" "}
+        <Link to="/login" >SignIn</Link>
       </div>
     </div>
   );
