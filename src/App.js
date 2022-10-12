@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+// components
+import Login from "./components/login/Login";
+import { Home } from "./components/home/Home";
+import { useReducer } from "react";
+import { reducer, initialState } from "./store/store";
+import Contact from "./components/Contact";
+import PublicRoute from "./utils/PublicRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
+  const [rootReducer, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        {/* public */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login dispatch={dispatch} />
+            </PublicRoute>
+          }
+        />
+        \{/* private */}
+        <Route
+          path="/store"
+          element={
+            <PrivateRoute>
+              <Home state={rootReducer} dispatch={dispatch} />
+            </PrivateRoute>
+          }
+        ></Route>
+        {/* open */}
+        <Route path="/" element={<Navigate to="store" replace />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
   );
 }
 
