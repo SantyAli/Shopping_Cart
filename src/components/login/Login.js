@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { USER_DATA } from "../../static-data/dummyUser";
-const Login = () => {
+// import "./login.css";
+const Login = () => { 
   const navigateTo = useNavigate();
   const { setAuthStatus } = useContext(AuthContext);
 
@@ -26,35 +27,42 @@ const Login = () => {
   };
 
   return (
-    <form noValidate onSubmit={login}>
-      <label>Email: </label>
-      <input
-        type="email"
-        value={email}
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-      />
-      <br />
-      <label>Password:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
-      {error && (
-        <>
-          <br />
-          {error}
-        </>
-      )}
-      <br />
-      <button type="submit" onClick={login}>
-        Log in
-      </button>
-    </form>
+    <div className="center">
+      <h1>Login</h1>
+      <form noValidate onSubmit={login}>
+        <div className="txt_field">
+          <label>Email: </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+        </div>
+        <br />
+        <div className="txt_field">
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+        </div>
+        {error && (
+          <>
+            <br />
+            {error}
+          </>
+        )}
+        <br />
+        <button type="submit" className="submitt" onClick={login}>
+          Log in
+        </button>
+      </form>
+    </div>
   );
 };
 
