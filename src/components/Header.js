@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Header = ({ cartItemCount }) => {
   return (
-    <div className="row center block">
+    <div className="center block">
       <div>
         <a href="#/">
           <h2>Shopping Cart</h2>

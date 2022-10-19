@@ -1,7 +1,6 @@
 export const initialState = {
     product: {
       products: [],
-      quantity: 0,
       loading: false,
       error: "",
       success: "",
@@ -26,9 +25,7 @@ export const initialState = {
         return {
           ...state, //rootReducer
           product: {
-            //product reducer
-            ...state.product,
-            quantity: 0,
+            products: [],
             loading: true,
             error: "",
             success: "",
@@ -39,7 +36,6 @@ export const initialState = {
           ...state,
           product: {
             products: action.payload,
-            quantity: 0,
             loading: false,
             success: "Successfull!",
           },
@@ -48,7 +44,6 @@ export const initialState = {
         return {
           ...state,
           product: {
-            quantity: 0,
             loading: false,
             error: "Something went wrong!",
             success: "",
