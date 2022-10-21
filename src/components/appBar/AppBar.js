@@ -7,16 +7,18 @@ import Navbar from "react-bootstrap/Navbar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AuthContext } from "../../context/authContext";
 import { LinkContainer } from "react-router-bootstrap";
+import { Badge } from "react-bootstrap";
+import { Cart } from "../cart/Cart";
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ cartItemCount }) => {
   const navigateTo = useNavigate();
-  const { user } = useContext(AuthContext);
-  const { setAuthStatus } = useContext(AuthContext);
+  const { user, setAuthStatus } = useContext(AuthContext);
 
   const logoutHandler = () => {
     setAuthStatus("", false);
     navigateTo("/login");
   };
+
   return (
     <>
       <Navbar bg="primary" variant="dark">
@@ -32,7 +34,9 @@ const ResponsiveAppBar = () => {
               <Nav.Link>Store</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/cart">
-              <Nav.Link>Cart</Nav.Link>
+              <Nav.Link>
+                Cart&nbsp;<sup><Badge bg="warning" text="dark">{cartItemCount}</Badge></sup>
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/login">
               {user.auth === true ? (

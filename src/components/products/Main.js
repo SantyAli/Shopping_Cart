@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Product from "../product/Product";
 import Nav from "react-bootstrap/Nav";
 
-export const Main = ({ products, addtoCart, removefromCart, cartItems }) => {
+export const Main = ({ products, addToCart, removeFromCart, cartItems }) => {
   const [searchInput, setSearchInput] = useState("");
   // original data from response
   const [data, setData] = useState(products);
@@ -137,8 +137,8 @@ export const Main = ({ products, addtoCart, removefromCart, cartItems }) => {
           <Product
             key={product.id}
             product={product}
-            addtoCart={addtoCart}
-            removefromCart={removefromCart}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
             item={cartItems.find((cartItem) => cartItem.id === product.id)}
           ></Product>
         ))}
