@@ -1,7 +1,7 @@
 import { Container, Spinner } from "react-bootstrap";
 import { Main } from "../products/Main";
 
-export const Home = ({
+export const ProductStore = ({
   loading,
   products,
   addProductToCart,
@@ -21,10 +21,10 @@ export const Home = ({
           </Spinner>
         </div>
       ) : (
-        <Main
+        <Main // ProductList
           products={products}
-          addtoCart={addProductToCart}
-          removefromCart={removeProductFromCart}
+          addToCart={addProductToCart}
+          removeFromCart={removeProductFromCart}
           cartItems={cartItems}
         />
       )}

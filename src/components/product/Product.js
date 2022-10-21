@@ -10,26 +10,21 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 
-function Product({ product, addtoCart, removefromCart, item }) {
+function Product({ product, addToCart, removeFromCart, item }) {
   const navigateTo = useNavigate();
   const { user } = useContext(AuthContext);
   const { setAuthStatus } = useContext(AuthContext);
  
-  const buttonToggleHandler = () => {
+  const handleAddToCart = () => {
     if (user.auth === true) {
-      addToCart();
+      addToCart(product);
     } else {
-      setAuthStatus("", false);
       navigateTo("/login");
     }
   };
 
-  const addToCart = () => {
-    addtoCart(product);
-    // dispatch({ type: "ADD_TO_CART", payload: product})
-  };
-  const removeFromCart = () => {
-    removefromCart(product);
+  const handleRemoveFromCart = () => {
+    removeFromCart(product);
   };
 
   return (
@@ -56,13 +51,13 @@ function Product({ product, addtoCart, removefromCart, item }) {
           <div className="button-group">
             <IconButton
               aria-label="delete"
-              onClick={removeFromCart}
+              onClick={handleRemoveFromCart}
               size="large"
             >
               <RemoveCircleIcon fontSize="large" />
             </IconButton>
             <span className="p-1">{item.quantity}</span>
-            <IconButton aria-label="delete" onClick={addToCart} size="large">
+            <IconButton aria-label="delete" onClick={handleAddToCart} size="large">
               <AddCircleIcon fontSize="large" />
             </IconButton>
           </div>
@@ -70,7 +65,7 @@ function Product({ product, addtoCart, removefromCart, item }) {
           <Button
             variant="contained"
             startIcon={<AddShoppingCartIcon />}
-            onClick={buttonToggleHandler}
+            onClick={handleAddToCart}
             className="button"
           >
             Add to Cart

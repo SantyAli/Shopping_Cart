@@ -2,12 +2,12 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
 // components
 import Login from "./components/login/Login";
-import { Home } from "./components/home/Home";
+import { ProductStore } from "./components/productStore/ProductStore";
 import { useReducer, useEffect } from "react";
 import { reducer, initialState } from "./store/store";
 import PublicRoute from "./utils/PublicRoute";
 import PrivateRoute from "./utils/PrivateRoute";
-import { Basket } from "./components/cart/Basket";
+import { Cart } from "./components/cart/Cart";
 import ResponsiveAppBar from "./components/appBar/AppBar";
 import Container from "react-bootstrap/Container";
 
@@ -49,7 +49,7 @@ function App() {
 
   return (
     <>
-      <ResponsiveAppBar />
+      <ResponsiveAppBar cartItemCount={count} />
       <Routes>
         {/* public */}
         <Route
@@ -62,26 +62,24 @@ function App() {
         />
 
         {/* private */}
-
         <Route
           path="/cart"
           element={
             <PrivateRoute>
-              <Basket
-                addtoCart={addProductToCart}
-                removefromCart={removeProductFromCart}
+              <Cart
+                addToCart={addProductToCart}
+                removeFromCart={removeProductFromCart}
                 cartItems={cartItems}
               />
             </PrivateRoute>
           }
         >
-          {" "}
         </Route>
         {/* open */}
         <Route
           path="/store"
           element={
-            <Home
+            <ProductStore
               loading={loading}
               products={products}
               addProductToCart={addProductToCart}
